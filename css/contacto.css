@@ -1,0 +1,361 @@
+@charset "UTF-8";
+/*
+  Con este reset vamos a resolver:
+    👉 Unificar el uso de Custom Properties
+    👉 Problemas de box-model más generales
+    👉 Problemas con imagenes, vídeos e iconos svg
+    👉 Problemas con tipografías y etiquetas input en formularios
+    👉 Unificar la tipografía de todas las etiquetas de una web
+*/
+/* Aquí definimos las Custom properties */
+:root {
+  --negro: #393939;
+  /* Tipografía */
+  --tipo-principal: Helvetica, Arial, sans-serif;
+  --tipo-secundaria: Verdana;
+}
+
+/* Las adaptamos al modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --negro: #ececec;
+  }
+}
+/* Opcional */
+/* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
+/* Opcional */
+/* Desactivamos los animations en el caso de que el usuario haya configurado el modo sin animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation: none !important;
+            animation: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+}
+/* Reseteamos los margin y paddings de todas las etiquetas */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+/* Evitamos problemas con las imagenes */
+img, picture, video, iframe, figure {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  /* opcional */
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* opcional */
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ... excepto los que se encuentran en párrafos */
+p a {
+  display: inline;
+}
+
+/* Quitamos los puntos de los <li> */
+li {
+  list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::-moz-selection {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+::selection {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  /* opcional */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/* Reseteamos las tablas */
+table, tr, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+/* (Probándolo, no usar en producción) En el caso de añadir una  */
+/* p svg{
+  display: inline;
+  width: initial;
+} */
+/* Configuramos la tipografía para toda la web */
+body {
+  background-color: rgb(200, 95, 95);
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: var(--tipo-principal);
+  color: var(--negro);
+  /* opcional */
+  line-height: 1.4em;
+  /* opcional */
+  font-smooth: always;
+  /* opcional */
+  -webkit-font-smoothing: antialiased;
+  /* opcional */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive Mobile */
+
+/* HEADER */
+
+.header {
+    background-color: rgb(25, 25, 25);
+    position: sticky;
+    margin-bottom: 1.5em;
+    top: 0;
+    width: 100%;
+    padding: 1em;
+    color: rgb(240, 240, 240);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header,.footer .a {
+    font-size: 1.2em;
+    font-weight: bold;
+}   
+
+.text-style {
+    color: rgb(255, 119, 119);
+    letter-spacing: .1em;
+}
+
+.header .button {
+    display: block;
+    cursor: pointer;
+}
+
+.header .svg {
+    width: 1.6em;
+    height: 1.6em;
+}
+
+/* NAV */
+
+.nav {
+    width: 100%;
+    height: 0;
+    transition: .7s ease;
+    overflow: hidden;
+    pointer-events: none;
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav .ul {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav .li {
+    margin: 1.8em 0;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.nav .a:hover {
+    color: rgb(255, 119, 119);   
+}
+
+.header .nav.activo {
+    height: 100vh;
+    pointer-events: auto;
+}
+
+/* CONTACT */
+
+.contact-box {
+  background-color: rgb(249, 249, 249);
+    color: #363636;
+    padding: 2em 3.2em;
+    margin-bottom: 1.6em;
+    width: 100%;
+}
+
+.contact-box .h1 {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.contact-box .h2 {
+    margin: 2em 0;
+    font-weight: 600;
+}
+
+.contact-box .p {
+    margin-bottom: 2em;
+}
+
+.contact-box .a {
+  color: rgb(100, 100, 255);
+}
+
+.contact-box .a:hover {
+  color: rgb(80, 80, 191);
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: black;
+    color: rgb(230, 230, 230);
+    padding: 2em 1em;
+    width: 100%;
+
+
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.footer .p {
+  margin: 1.6em 0;
+}
+
+.footer .f-social {
+  display: flex;
+}
+
+.footer .fa-brands {
+  margin: 0 5px;
+  font-size: 1.4em;
+}
+
+.fa-brands:hover {
+  color: rgb(255, 119, 119);   
+}
+
+/* Pc Responsive */
+
+@media (min-width: 720px) {
+    
+  /* HEADER */
+
+  .header .button {
+      display: none;
+  }
+  .header {
+    padding: 1em 2em;
+  }
+
+  /* NAV */
+
+  .nav .ul {
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }  
+  .nav {
+    width: 0;
+    overflow: inherit;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content:  flex-end;
+  }
+  .nav .li {
+    margin: 0 1.6em;
+    font-size: .8em;
+  }
+  .header .nav.activo {
+    height: 0vh;
+  }
+
+  /* Contact */
+
+  .d-flex {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-box {
+    background-color: rgb(240, 240, 240);
+    color: #363636;
+    padding: 2em 3.2em;
+    margin-bottom: 1.6em;
+    width: 80%;
+    border-radius: 3px;
+}
+
+  /* FOOTER */
+
+  .footer {
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .footer .fa-brands {
+    font-size: 1.8em;
+    margin-right: .6em;
+  }
+
+}
